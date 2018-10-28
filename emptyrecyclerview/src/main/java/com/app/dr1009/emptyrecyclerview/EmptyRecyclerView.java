@@ -1,11 +1,14 @@
 package com.app.dr1009.emptyrecyclerview;
 
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
+import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
+import android.view.LayoutInflater;
 import android.view.View;
 
 public class EmptyRecyclerView extends RecyclerView {
@@ -14,15 +17,20 @@ public class EmptyRecyclerView extends RecyclerView {
     private View mEmptyView;
 
     public EmptyRecyclerView(@NonNull Context context) {
-        super(context);
+        this(context, null);
     }
 
     public EmptyRecyclerView(@NonNull Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
+        this(context, attrs, 0);
     }
 
     public EmptyRecyclerView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
+
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.EmptyRecyclerView, 0, 0);
+        int resId = a.getResourceId(R.styleable.EmptyRecyclerView_emptyView, 0);
+        setEmptyView(resId);
+        a.recycle();
     }
 
     @Override
@@ -63,5 +71,18 @@ public class EmptyRecyclerView extends RecyclerView {
      */
     public void setEmptyView(@Nullable View emptyView) {
         mEmptyView = emptyView;
+    }
+
+    /**
+     * Sets the view to show if the adapter is empty
+     *
+     * @param resId empty view's layout id
+     */
+    public void setEmptyView(@LayoutRes int resId) {
+        if (resId == 0) {
+            return;
+        }
+
+        mEmptyView = LayoutInflater.from(getContext()).inflate(resId, null);
     }
 }
