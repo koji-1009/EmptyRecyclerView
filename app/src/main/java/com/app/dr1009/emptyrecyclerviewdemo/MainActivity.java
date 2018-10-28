@@ -1,7 +1,6 @@
 package com.app.dr1009.emptyrecyclerviewdemo;
 
 import android.os.Bundle;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 
@@ -11,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,12 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
         // init EmptyRecyclerView
         EmptyRecyclerView recyclerView = findViewById(R.id.recycler);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(mAdapter);
-
-        // Add EmptyView
-        View emptyView = LayoutInflater.from(this).inflate(R.layout.sample_empty_view, null);
-        recyclerView.setEmptyView(emptyView);
 
         // init Buttons
         Button addButton = findViewById(R.id.button_add);
