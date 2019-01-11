@@ -6,10 +6,15 @@ import android.graphics.Canvas;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringRes;
+import android.support.annotation.StyleRes;
+import android.support.v7.view.ContextThemeWrapper;
 import android.support.v7.widget.RecyclerView;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
 
 public class EmptyRecyclerView extends RecyclerView {
 
@@ -65,7 +70,7 @@ public class EmptyRecyclerView extends RecyclerView {
     }
 
     /**
-     * Sets the view to show if the adapter is empty
+     * Set a view to show if the adapter is empty
      *
      * @param emptyView {@link View}
      */
@@ -74,7 +79,7 @@ public class EmptyRecyclerView extends RecyclerView {
     }
 
     /**
-     * Sets the view to show if the adapter is empty
+     * Set a view to show if the adapter is empty
      *
      * @param resId empty view's layout id
      */
@@ -84,5 +89,108 @@ public class EmptyRecyclerView extends RecyclerView {
         }
 
         mEmptyView = LayoutInflater.from(getContext()).inflate(resId, null);
+    }
+
+    /**
+     * Create TextView from a string resource and Gravity,
+     * add to EmptyRecyclerView to show if the adapter is empty.
+     *
+     * @param emptyMessageResId resource id of message to show
+     * @param gravity           {@link android.view.Gravity}
+     */
+    public void setEmptyString(@StringRes int emptyMessageResId, int gravity) {
+        setEmptyString(emptyMessageResId, gravity, null);
+    }
+
+    /**
+     * Create TextView from a string resource and Gravity and LayoutParams,
+     * add to EmptyRecyclerView to show if the adapter is empty.
+     *
+     * @param emptyMessageResId resource id of message to show
+     * @param gravity           {@link android.view.Gravity}
+     * @param params            {@link ViewGroup.LayoutParams}
+     */
+    public void setEmptyString(@StringRes int emptyMessageResId, int gravity, @Nullable ViewGroup.LayoutParams params) {
+        setEmptyString(emptyMessageResId, gravity, params, 0);
+    }
+
+    /**
+     * Create TextView from a string resource and Gravity and Style resource,
+     * add to EmptyRecyclerView to show if the adapter is empty.
+     *
+     * @param emptyMessageResId resource id of message to show
+     * @param gravity           {@link android.view.Gravity}
+     * @param styleRes          resource id of view style
+     */
+    public void setEmptyString(@StringRes int emptyMessageResId, int gravity, @StyleRes int styleRes) {
+        setEmptyString(emptyMessageResId, gravity, null, styleRes);
+    }
+
+    /**
+     * Create TextView from a string resource, Gravity, LayoutParams and Style resource,
+     * add to EmptyRecyclerView to show if the adapter is empty.
+     *
+     * @param emptyMessageResId resource id of message to show
+     * @param gravity           {@link android.view.Gravity}
+     * @param params            {@link ViewGroup.LayoutParams}
+     * @param styleRes          resource id of view style
+     */
+    public void setEmptyString(@StringRes int emptyMessageResId, int gravity, @Nullable ViewGroup.LayoutParams params, @StyleRes int styleRes) {
+        setEmptyString(getContext().getString(emptyMessageResId), gravity, params, styleRes);
+    }
+
+    /**
+     * Create TextView from a string and Gravity,
+     * add to EmptyRecyclerView to show if the adapter is empty.
+     *
+     * @param emptyMessage message to show
+     * @param gravity      {@link android.view.Gravity}
+     */
+    public void setEmptyString(@Nullable String emptyMessage, int gravity) {
+        setEmptyString(emptyMessage, gravity, null);
+    }
+
+    /**
+     * Create TextView from a string and Gravity and LayoutParams,
+     * add to EmptyRecyclerView to show if the adapter is empty.
+     *
+     * @param emptyMessage message to show
+     * @param gravity      {@link android.view.Gravity}
+     * @param params       {@link ViewGroup.LayoutParams}
+     */
+    public void setEmptyString(@Nullable String emptyMessage, int gravity, @Nullable ViewGroup.LayoutParams params) {
+        setEmptyString(emptyMessage, gravity, params, 0);
+    }
+
+    /**
+     * Create TextView from a string and Gravity and Style resource,
+     * add to EmptyRecyclerView to show if the adapter is empty.
+     *
+     * @param emptyMessage message to show
+     * @param gravity      {@link android.view.Gravity}
+     * @param styleRes     resource id of view style
+     */
+    public void setEmptyString(@Nullable String emptyMessage, int gravity, @StyleRes int styleRes) {
+        setEmptyString(emptyMessage, gravity, null, styleRes);
+    }
+
+    /**
+     * Create TextView from a string, Gravity, LayoutParams and Style resource,
+     * add to EmptyRecyclerView to show if the adapter is empty.
+     *
+     * @param emptyMessage message to show
+     * @param gravity      {@link android.view.Gravity}
+     * @param params       {@link ViewGroup.LayoutParams}
+     * @param styleRes     resource id of view style
+     */
+    public void setEmptyString(@Nullable String emptyMessage, int gravity, @Nullable ViewGroup.LayoutParams params, @StyleRes int styleRes) {
+        TextView textView = new TextView(new ContextThemeWrapper(getContext(), styleRes));
+        textView.setText(emptyMessage);
+        textView.setGravity(gravity);
+        if (params != null) {
+            textView.setLayoutParams(params);
+        }
+
+        mEmptyView = textView;
     }
 }
