@@ -2,7 +2,11 @@
 
 [![](https://jitpack.io/v/koji-1009/EmptyRecyclerView.svg)](https://jitpack.io/#koji-1009/EmptyRecyclerView)
 
-Added setEmptyView method to RecyclerView.
+Added setEmptyView method to RecyclerView like ListView#setEmptyView.
+
+## Screen
+
+<img src="https://user-images.githubusercontent.com/17231507/51785324-74838500-2199-11e9-9960-1aeb2d033c57.gif" width="200">
 
 ## Gradle
 
