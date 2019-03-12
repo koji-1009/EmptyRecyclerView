@@ -189,6 +189,8 @@ public class EmptyRecyclerView extends RecyclerView {
         textView.setGravity(gravity);
         if (params != null) {
             textView.setLayoutParams(params);
+        } else {
+            textView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         }
 
         mEmptyView = textView;
