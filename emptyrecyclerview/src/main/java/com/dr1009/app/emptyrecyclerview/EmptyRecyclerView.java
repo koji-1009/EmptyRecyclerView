@@ -1,4 +1,4 @@
-package com.app.dr1009.emptyrecyclerview;
+package com.dr1009.app.emptyrecyclerview;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -16,6 +16,8 @@ import androidx.annotation.StringRes;
 import androidx.annotation.StyleRes;
 import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.app.dr1009.emptyrecyclerview.R;
 
 public class EmptyRecyclerView extends RecyclerView {
 

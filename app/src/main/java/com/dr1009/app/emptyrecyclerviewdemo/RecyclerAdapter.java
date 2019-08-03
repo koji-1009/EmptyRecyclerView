@@ -1,4 +1,4 @@
-package com.app.dr1009.emptyrecyclerviewdemo;
+package com.dr1009.app.emptyrecyclerviewdemo;
 
 import android.text.TextUtils;
 import android.view.LayoutInflater;

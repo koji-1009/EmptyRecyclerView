@@ -35,7 +35,7 @@ dependencies {
 Add `EmptyRecyclerView` instead of `RecyclerView`.
 
 ```
-<com.app.dr1009.emptyrecyclerview.EmptyRecyclerView
+<com.dr1009.app.emptyrecyclerview.EmptyRecyclerView
     android:id="@+id/recycler"
     android:layout_width="match_parent"
     android:layout_height="match_parent"

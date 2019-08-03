@@ -1,15 +1,15 @@
-package com.app.dr1009.emptyrecyclerviewdemo;
+package com.dr1009.app.emptyrecyclerviewdemo;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.app.dr1009.emptyrecyclerview.EmptyRecyclerView;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.dr1009.app.emptyrecyclerview.EmptyRecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 

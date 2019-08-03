@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.app.dr1009.emptyrecyclerviewdemo">
+    package="com.dr1009.app.emptyrecyclerviewdemo">
 
     <application
         android:allowBackup="true"

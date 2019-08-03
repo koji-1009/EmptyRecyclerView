@@ -3,7 +3,7 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.app.dr1009.emptyrecyclerviewdemo"
+        applicationId "com.dr1009.app.emptyrecyclerviewdemo"
         minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
