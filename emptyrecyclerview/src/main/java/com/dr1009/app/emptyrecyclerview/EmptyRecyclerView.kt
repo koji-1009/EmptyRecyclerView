@@ -77,20 +77,18 @@ class EmptyRecyclerView @JvmOverloads constructor(
     }
 
     /**
-     * Create TextView from a string resource, Gravity, LayoutParams and Style resource,
+     * Create TextView from a string resource, Gravity and LayoutParams,
      * add to EmptyRecyclerView to show if the adapter is empty.
      *
      * @param emptyMessageResId resource id of message to show
      * @param gravity           [android.view.Gravity]
      * @param params            [ViewGroup.LayoutParams]
-     * @param styleRes          resource id of view style
      */
     @SuppressWarnings("unused")
     fun setEmptyString(
         emptyMessageResId: Int,
         gravity: Int = Gravity.CENTER,
-        params: ViewGroup.LayoutParams? = null,
-        @StyleRes styleRes: Int = 0
+        params: ViewGroup.LayoutParams? = null
     ) {
         val message = if (emptyMessageResId > 0) {
             context.getString(emptyMessageResId)
@@ -98,31 +96,29 @@ class EmptyRecyclerView @JvmOverloads constructor(
             null
         }
 
-        setEmptyString(message, gravity, params, styleRes)
+        setEmptyString(message, gravity, params)
     }
 
     /**
-     * Create TextView from a string, Gravity, LayoutParams and Style resource,
+     * Create TextView from a string, Gravity and LayoutParams,
      * add to EmptyRecyclerView to show if the adapter is empty.
      *
      * @param emptyMessage message to show
      * @param gravity      [android.view.Gravity]
      * @param params       [ViewGroup.LayoutParams]
-     * @param styleRes     resource id of view style
      */
     @SuppressWarnings("unused")
     fun setEmptyString(
         emptyMessage: String?,
         gravity: Int = Gravity.CENTER,
-        params: ViewGroup.LayoutParams? = null,
-        @StyleRes styleRes: Int = 0
+        params: ViewGroup.LayoutParams? = null
     ) {
         if (emptyMessage.isNullOrEmpty()) {
             setEmptyView(null)
             return
         }
 
-        val textView = TextView(ContextThemeWrapper(context, styleRes)).also {
+        val textView = TextView(context).also {
             it.text = emptyMessage
             it.gravity = gravity
             it.layoutParams = params ?: ViewGroup.LayoutParams(
