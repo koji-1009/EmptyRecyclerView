@@ -2,10 +2,15 @@ package com.dr1009.app.emptyrecyclerview
 
 import android.content.Context
 import android.graphics.Canvas
+import android.os.Build
 import android.util.AttributeSet
-import android.view.*
+import android.view.Gravity
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.TextView
 import androidx.annotation.LayoutRes
+import androidx.annotation.StringRes
 import androidx.annotation.StyleRes
 import androidx.recyclerview.widget.RecyclerView
 import com.app.dr1009.emptyrecyclerview.R
@@ -77,54 +82,61 @@ class EmptyRecyclerView @JvmOverloads constructor(
     }
 
     /**
-     * Create TextView from a string resource, Gravity and LayoutParams,
+     * Create TextView from a string resource, Gravity, LayoutParams and TextAppearance resource,
      * add to EmptyRecyclerView to show if the adapter is empty.
      *
      * @param emptyMessageResId resource id of message to show
      * @param gravity           [android.view.Gravity]
      * @param params            [ViewGroup.LayoutParams]
+     * @param textAppearanceResId resource id of TextAppearance. If null, show default appearance.
      */
     @SuppressWarnings("unused")
     fun setEmptyString(
-        emptyMessageResId: Int,
+        @StringRes emptyMessageResId: Int,
         gravity: Int = Gravity.CENTER,
-        params: ViewGroup.LayoutParams? = null
+        params: ViewGroup.LayoutParams? = null,
+        @StyleRes textAppearanceResId: Int? = null
     ) {
-        val message = if (emptyMessageResId > 0) {
-            context.getString(emptyMessageResId)
-        } else {
-            null
-        }
-
-        setEmptyString(message, gravity, params)
+        setEmptyString(context.getString(emptyMessageResId), gravity, params, textAppearanceResId)
     }
 
     /**
-     * Create TextView from a string, Gravity and LayoutParams,
+     * Create TextView from a string, Gravity, LayoutParams and TextAppearance resource,
      * add to EmptyRecyclerView to show if the adapter is empty.
      *
      * @param emptyMessage message to show
      * @param gravity      [android.view.Gravity]
      * @param params       [ViewGroup.LayoutParams]
+     * @param textAppearanceResId resource id of TextAppearance. If null, show default appearance.
      */
     @SuppressWarnings("unused")
     fun setEmptyString(
         emptyMessage: String?,
         gravity: Int = Gravity.CENTER,
-        params: ViewGroup.LayoutParams? = null
+        params: ViewGroup.LayoutParams? = null,
+        @StyleRes textAppearanceResId: Int? = null
     ) {
         if (emptyMessage.isNullOrEmpty()) {
             setEmptyView(null)
             return
         }
 
-        val textView = TextView(context).also {
-            it.text = emptyMessage
-            it.gravity = gravity
-            it.layoutParams = params ?: ViewGroup.LayoutParams(
+        val textView = TextView(context).also { view ->
+            view.text = emptyMessage
+            view.gravity = gravity
+            view.layoutParams = params ?: ViewGroup.LayoutParams(
                 ViewGroup.LayoutParams.WRAP_CONTENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
             )
+
+            if (textAppearanceResId != null) {
+                // set TextAppearance
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                    view.setTextAppearance(textAppearanceResId)
+                } else {
+                    view.setTextAppearance(context, textAppearanceResId)
+                }
+            }
         }
 
         setEmptyView(textView)
