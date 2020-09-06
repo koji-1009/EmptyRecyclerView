@@ -1,3 +1,3 @@
-import android from 'dangerjs-android-plugin'
+import { androidlint } from 'dangerjs-android-plugin'
 
-android()
+androidlint()
