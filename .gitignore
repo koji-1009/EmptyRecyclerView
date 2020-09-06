@@ -60,3 +60,6 @@ fastlane/readme.md
 
 # MacOS
 .DS_store
+
+# node
+node_modules

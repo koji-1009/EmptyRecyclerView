@@ -1,0 +1,62 @@
+name: Danger(PR)
+
+on: 
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+jobs:
+  danger:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [14.x]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Gradle dist Cache
+        uses: actions/cache@v1
+        with:
+          path: ~/.gradle/wrapper
+          key: ${{ runner.os }}-dist-gradle-${{ hashFiles('**/gradle-wrapper.properties') }}
+      - name: Gradle dependencies Cache
+        uses: actions/cache@v1
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-v1-gradle-${{ hashFiles('./build.gradle') }}-${{ hashFiles('**/build.gradle') }}
+          restore-keys: |
+            ${{ runner.os }}-v1-gradle-${{ hashFiles('./build.gradle') }}-
+            ${{ runner.os }}-v1-gradle-
+      - name: Download Dependencies
+        run: |
+          ./gradlew androidDependencies --no-daemon
+      - name: Android build Cache
+        uses: actions/cache@v1
+        with:
+          path: ~/.android/cache
+          key: ${{ runner.os }}-build-android-${{ github.ref }}
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn cache dir)"
+      - name: yarn cache
+        uses: actions/cache@v1
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: Install yarn
+        run: yarn install --frozen-lockfile
+
+      - name: Danger JS Action
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: yarn danger ci --ignoreOutOfDiffComments

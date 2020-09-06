@@ -1,0 +1,7 @@
+{
+  "license": "MIT",
+  "devDependencies": {
+    "danger": "^10.4.0",
+    "dangerjs-android-plugin": "^0.1.0"
+  }
+}
