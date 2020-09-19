@@ -370,10 +370,10 @@ danger@^10.4.0:
     require-from-string "^2.0.2"
     supports-hyperlinks "^1.0.1"
 
-dangerjs-android-plugin@^0.1.6:
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/dangerjs-android-plugin/-/dangerjs-android-plugin-0.1.6.tgz#fc5b830ce3da8f975ca3ed231ca924c3b8bb83bf"
-  integrity sha512-pYZo5+Fhqt0kj1H/O5mgmWmnuCxqmiTvfeoH6o57a+nqIZLWWIvsvxH7m+ma6GuFWB1LSNND04297kRWOJ50CQ==
+dangerjs-android-plugin@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/dangerjs-android-plugin/-/dangerjs-android-plugin-0.2.0.tgz#3e3cd7a84fc1cd8523cafffeb82d0d7a73d55a12"
+  integrity sha512-m88Q9nOQqXF5nPRcN1nNir143zNMGenLp9lQcYr8XvUe3NUCft9iGUcORoJdEEF5FoPrdxhohnFki0wKgQW+fg==
   dependencies:
     xml2js "^0.4.23"
 
