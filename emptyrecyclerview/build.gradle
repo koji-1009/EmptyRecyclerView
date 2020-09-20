@@ -8,6 +8,13 @@ android {
         minSdkVersion 21
         targetSdkVersion 30
     }
+
+    buildFeatures {
+        aidl = false
+        buildConfig = false
+        renderScript = false
+        shaders = false
+    }
 }
 
 dependencies {
