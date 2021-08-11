@@ -18,7 +18,7 @@ import com.app.dr1009.emptyrecyclerview.R
 class EmptyRecyclerView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
-    defStyle: Int = 0
+    defStyle: Int = 0,
 ) : RecyclerView(context, attrs, defStyle) {
 
     private var emptyView: View? = null
@@ -35,9 +35,7 @@ class EmptyRecyclerView @JvmOverloads constructor(
         val view = emptyView
         if (view != null && adapter?.itemCount == 0) {
             view.measure(widthSpec, heightSpec)
-            val width = view.measuredWidth
-            val height = view.measuredHeight
-            setMeasuredDimension(width, height)
+            setMeasuredDimension(view.measuredWidth, view.measuredHeight)
             return
         }
 
@@ -95,9 +93,14 @@ class EmptyRecyclerView @JvmOverloads constructor(
         @StringRes emptyMessageResId: Int,
         gravity: Int = Gravity.CENTER,
         params: ViewGroup.LayoutParams? = null,
-        @StyleRes textAppearanceResId: Int? = null
+        @StyleRes textAppearanceResId: Int? = null,
     ) {
-        setEmptyString(context.getString(emptyMessageResId), gravity, params, textAppearanceResId)
+        setEmptyString(
+            emptyMessage = context.getString(emptyMessageResId),
+            gravity = gravity,
+            params = params,
+            textAppearanceResId = textAppearanceResId,
+        )
     }
 
     /**
@@ -114,7 +117,7 @@ class EmptyRecyclerView @JvmOverloads constructor(
         emptyMessage: String?,
         gravity: Int = Gravity.CENTER,
         params: ViewGroup.LayoutParams? = null,
-        @StyleRes textAppearanceResId: Int? = null
+        @StyleRes textAppearanceResId: Int? = null,
     ) {
         if (emptyMessage.isNullOrEmpty()) {
             setEmptyView(null)
