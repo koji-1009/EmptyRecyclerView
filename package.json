@@ -1,8 +1,8 @@
 {
   "license": "MIT",
   "devDependencies": {
-    "danger": "^10.7.1",
-    "dangerjs-android-plugin": "^0.2.2",
-    "typescript": "^4.5.2"
+    "danger": "^11.0.0",
+    "dangerjs-android-plugin": "^0.3.0",
+    "typescript": "^4.5.5"
   }
 }
