@@ -3,6 +3,6 @@
   "devDependencies": {
     "danger": "^11.0.0",
     "dangerjs-android-plugin": "^0.3.0",
-    "typescript": "^4.5.5"
+    "typescript": "^4.6.0"
   }
 }
