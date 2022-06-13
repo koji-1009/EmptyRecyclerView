@@ -240,9 +240,9 @@ danger@^11.0.0:
     supports-hyperlinks "^1.0.1"
 
 dangerjs-android-plugin@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/dangerjs-android-plugin/-/dangerjs-android-plugin-0.4.0.tgz#6e9a5fd432608fe5d0705c7a954bdd3c34e44eaa"
-  integrity sha512-kdfGANfd7e4eqJw6e2RHMX9OX0zc3fvOUDHG/iMDDYyV/JZONmXjtBbZZi0RflWoE5zDXViLKGSjJZy3lrm2IA==
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/dangerjs-android-plugin/-/dangerjs-android-plugin-0.4.1.tgz#79b6fcbc89a18e1ad8b76168bd8ed4250c8a1f7b"
+  integrity sha512-xCOVLNQ1DgFQ5c9uLVtSfxuLQLTJ478WLUn5AUpzMphQThcIm6ncc0JYW8ubr3+4xIGxea3gOJjoQcXbCIhhlA==
   dependencies:
     xml2js "^0.4.0"
 
