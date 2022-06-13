@@ -9,19 +9,19 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        node-version: [14.x]
+        node-version: [16]
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Gradle dist Cache
-        uses: actions/cache@v1
+        uses: actions/cache@v3
         with:
           path: ~/.gradle/wrapper
           key: ${{ runner.os }}-dist-gradle-${{ hashFiles('**/gradle-wrapper.properties') }}
       - name: Gradle dependencies Cache
-        uses: actions/cache@v1
+        uses: actions/cache@v3
         with:
           path: ~/.gradle/caches
           key: ${{ runner.os }}-v1-gradle-${{ hashFiles('./build.gradle') }}-${{ hashFiles('**/build.gradle') }}
@@ -32,13 +32,13 @@ jobs:
         run: |
           ./gradlew androidDependencies --no-daemon
       - name: Android build Cache
-        uses: actions/cache@v1
+        uses: actions/cache@v3
         with:
           path: ~/.android/cache
           key: ${{ runner.os }}-build-android-${{ github.ref }}
 
       - name: Use Node.js ${{ matrix.node-version }}
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
 
@@ -46,7 +46,7 @@ jobs:
         id: yarn-cache-dir-path
         run: echo "::set-output name=dir::$(yarn cache dir)"
       - name: yarn cache
-        uses: actions/cache@v1
+        uses: actions/cache@v3
         id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
         with:
           path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
