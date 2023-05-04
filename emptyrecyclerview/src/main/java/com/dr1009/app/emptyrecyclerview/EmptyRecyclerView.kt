@@ -88,7 +88,7 @@ class EmptyRecyclerView @JvmOverloads constructor(
      * @param params            [ViewGroup.LayoutParams]
      * @param textAppearanceResId resource id of TextAppearance. If null, show default appearance.
      */
-    @SuppressWarnings("unused")
+    @Suppress("unused")
     fun setEmptyString(
         @StringRes emptyMessageResId: Int,
         gravity: Int = Gravity.CENTER,
@@ -134,10 +134,11 @@ class EmptyRecyclerView @JvmOverloads constructor(
 
             if (textAppearanceResId != null) {
                 // set TextAppearance
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                    view.setTextAppearance(textAppearanceResId)
-                } else {
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+                    @Suppress("DEPRECATION")
                     view.setTextAppearance(context, textAppearanceResId)
+                } else {
+                    view.setTextAppearance(textAppearanceResId)
                 }
             }
         }
